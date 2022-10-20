@@ -1,0 +1,28 @@
+#light{
+   color: rgb(95, 95, 95);
+}
+#invalido{
+   display: none;
+   font-size: 13px;
+   color:rgb(179, 45, 22);
+}
+#invalidow1{
+   display: none;
+   font-size: 13px;
+   color:rgb(179, 45, 22);
+}
+#invalidow2{
+   display: none;
+   font-size: 13px;
+   color:rgb(179, 45, 22);
+}
+#invalidonp{
+   display: none;
+   font-size: 13px;
+   color:rgb(179, 45, 22);
+}
+#invalidol{
+   display: none;
+   font-size: 13px;
+   color:rgb(179, 45, 22);
+}
