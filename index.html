@@ -7,56 +7,92 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container w-100 d-flex justify-content-center p-5">
-      <div class="card d-flex">
+    <div class="container w-100 d-flex justify-content-center pt-5">
+      <div class="card d-flex mb-4 w-50 justify-content-center">
         <h5 class="card-header">Ingresar alfabeto Σ<sub>1</sub></h5>
         <div class="card-body">
           <p class="card-text">Los elementos del alfabeto deben ser ingresados separados por una coma, un elemento puede ser un rango o un simple caracter.</p>
-          <div class="mb-3">
-              <input type="text" class="form-control" id="alfa" oninput="validar()" placeholder="Ejemplo: a-m, p, 8, 8-9">
+          <input type="text" class="form-control" id="alfa" oninput="validar()" placeholder="Ejemplo: a-m, p, 3, 5-9">
               <div id="invalido">
                 Ingresar caracteres y rangos validos (sin espacios).
               </div>
-              <p class="card-text mt-2">Ingresar las cadenas formadas por el alfabeto Σ<sub>1</sub></p>
-              <div class="d-flex flex-row">
-                <div class="d-flex flex-column pe-5">
-                  <input type="text" class="form-control" id="w1" placeholder="W1:">
-                  <div id="invalidow1">
-                    Ingresar caracteres pertenecientes al alfabeto.
-                  </div>
-                </div>
-                <div class="d-flex flex-column">
-                  <input type="text" class="form-control" id="w2" placeholder="W2:">
-                  <div id="invalidow2">
-                    Ingresar caracteres pertenecientes al alfabeto.
-                  </div>
-                </div>
+              <div class="d-flex pt-3">
+                <input type="range" value="0" class="me-2" min="-5" id="range" max="5" oninput="this.nextElementSibling.value = this.value">
+                <output>0</output>
               </div>
-              <button class="btn btn-primary m-3 ms-0" onclick="validar_c()" >Validar cadenas</button>
-                <p id="light" class="mt-2"></p>
-          </div>
-        </div>
-        <h5 class="card-header">Generar lenguaje</h5>
-        <div class="card-body">
-          <p class="card-text">Ingresar el numero de palabras (np) y la longitud de las mismas (l)</p>
-          <div class="d-flex flex-row">
-            <div class="d-flex flex-column pe-5">
-              <input type="number" class="form-control " onkeypress="return event.charCode >= 48" id="np" placeholder="np:">
-              <div id="invalidonp">
-                Ingresar un numero positivo
-              </div>
-            </div>
-            <div class="d-flex flex-column">
-              <input type="number" min="1" onkeypress="return event.charCode >= 48" class="form-control" id="l" placeholder="l:">
-              <div id="invalidol">
-                Ingresar un numero positivo
-              </div>
-            </div>
-          </div>
-          <button class="btn btn-primary m-3 ms-0" onclick="positivo()" >Generar lenguajes</button>
+              <button class="btn btn-outline-dark m-3 ms-0" onclick="pot()" >Calcular potencia</button>
+              <p id="exp" class="mt-2"></p>
         </div>
       </div>
     </div>
+      <div class="container w-100 d-flex align-items-center flex-column">
+        <div class="card d-flex mb-4 w-50">
+          <h5 class="card-header">Validar cadenas</h5>
+          <div class="card-body">
+                <p class="card-text mt-2">Ingresar las cadenas formadas por el alfabeto Σ<sub>1</sub></p>
+                <div class="d-flex flex-row">
+                  <div class="d-flex flex-column pe-5">
+                    <input type="text" class="form-control" id="w1" placeholder="W1:">
+                    <div id="invalidow1">
+                      Ingresar caracteres pertenecientes al alfabeto.
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <input type="text" class="form-control" id="w2" placeholder="W2:">
+                    <div id="invalidow2">
+                      Ingresar caracteres pertenecientes al alfabeto.
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-outline-primary m-3 ms-0" onclick="validar_c()" >Validar cadenas</button>
+                  <p id="light" class="mt-2"></p>
+          </div>
+        </div>
+        <div class="card d-flex mb-4 w-50">
+          <h5 class="card-header">Generar lenguaje</h5>
+          <div class="card-body mw-50">
+            <p class="card-text">Ingresar el numero de palabras (np) y la longitud de las mismas (l)</p>
+            <p class="card-text mt-2">L<sub>1</sub>:</p>
+            <div class="d-flex flex-row">
+              <div class="d-flex flex-column pe-5">
+                <input type="number" class="form-control " onkeypress="return event.charCode >= 48" id="np1" placeholder="np:">
+                <div id="invalidonp1">
+                  Ingresar un numero entero positivo
+                </div>
+              </div>
+              <div class="d-flex flex-column">
+                <input type="number" min="1" onkeypress="return event.charCode >= 48" class="form-control" id="l1" placeholder="l:">
+                <div id="invalidol1">
+                  Ingresar un numero entero positivo
+                </div>
+              </div>
+            </div>
+            <p class="card-text mt-2">L<sub>2</sub>:</p>
+            <div class="d-flex flex-row">
+              <div class="d-flex flex-column pe-5">
+                <input type="number" class="form-control " onkeypress="return event.charCode >= 48" id="np2" placeholder="np:">
+                <div id="invalidonp2">
+                  Ingresar un numero entero positivo
+                </div>
+              </div>
+              <div class="d-flex flex-column">
+                <input type="number" min="1" onkeypress="return event.charCode >= 48" class="form-control" id="l2" placeholder="l:">
+                <div id="invalidol2">
+                  Ingresar un numero entero positivo
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-outline-primary m-3 ms-0" onclick="positivo()" >Generar lenguajes</button>
+            <div>
+              <p id="len1"></p>
+              <p id="len2"></p>
+              <button class="btn btn-danger m-3 ms-0" id="danger" disabled onclick="restar()">Restar lenguajes</button>
+              <p id="led"></p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
 
 
 

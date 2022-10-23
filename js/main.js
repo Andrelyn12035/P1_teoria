@@ -1,5 +1,7 @@
 let caracteres =""
 let alfabeto = []
+let L1 = []
+let L2 = []
 
 function validar(){
    const string = document.getElementById("alfa").value
@@ -10,34 +12,40 @@ function validar(){
       document.getElementById("invalido").style.display = 'none'
       caracteres = string
       elementos()
+      return true
    }
 }
 
 function validar_c(){
+   validar()
    const w1 = document.getElementById("w1").value
    const w2 = document.getElementById("w2").value
-   if (/[^\wñÑ]/g.test(w1) || w1 == "") {
-      alertaw1()
-   }else
-   if (/[^\wñÑ]/g.test(w2) || w2 == "") {
-      alertaw2()
-   }
-   else{
-      document.getElementById("w1").style.borderColor = ""
-      document.getElementById("invalidow1").style.display = 'none'
+   if (validar()) {
+      if (/[^\wñÑ]/g.test(w1) || w1 == "") {
+         alertaw1()
+      }else
+      if (/[^\wñÑ]/g.test(w2) || w2 == "") {
+         alertaw2()
+      }
+      else{
+         document.getElementById("w1").style.borderColor = ""
+         document.getElementById("invalidow1").style.display = 'none'
+   
+         document.getElementById("w2").style.borderColor = ""
+         document.getElementById("invalidow2").style.display = 'none'
+   
+         alfabeto_c(w1,w2)
+      }
+   }else{
 
-      document.getElementById("w2").style.borderColor = ""
-      document.getElementById("invalidow2").style.display = 'none'
-
-      alfabeto_c(w1,w2)
    }
+   
 }
 
 function alfabeto_c(w1,w2) {
    const alfa_ext = extender()
    const reg = "["+"^"+alfa_ext+"]"
    const regexp = new RegExp(reg,"g")
-   console.log(regexp)
    if (regexp.test(w1) || w1 == "") {
       alertaw1()
    }else
@@ -72,6 +80,7 @@ function elementos(){
    })
    if (array.length == n_array.length) {
       alfabeto = array
+      alfabeto = extender()
    }
 }
 function rango(element){
@@ -115,7 +124,6 @@ function rango(element){
 
 function extender() {
    let ext=[]
-   let epr = ""
    alfabeto.forEach(element => {
       if (/[-]/.test(element)){
          let st = element.charCodeAt(0)
@@ -128,10 +136,7 @@ function extender() {
       }
    })
    let rep = [...new Set(ext)]
-   console.log(rep)
-   epr = rep.join('')
-   console.log(epr)
-   return epr
+   return rep
 }
 
 
@@ -151,14 +156,22 @@ function alertaw2(){
    document.getElementById('light').innerHTML = ''
 }
 function alertanp(){
-   document.getElementById("np").style.borderColor = "rgb(179, 45, 22)"
-   document.getElementById("invalidonp").style.display = 'inline'
+   document.getElementById("np1").style.borderColor = "rgb(179, 45, 22)"
+   document.getElementById("invalidonp1").style.display = 'inline'
 }
 function alertal(){
-   document.getElementById("l").style.borderColor = "rgb(179, 45, 22)"
-   document.getElementById("invalidol").style.display = 'inline'
+   document.getElementById("l1").style.borderColor = "rgb(179, 45, 22)"
+   document.getElementById("invalidol1").style.display = 'inline'
 }
 
+function alertanp2(){
+   document.getElementById("np2").style.borderColor = "rgb(179, 45, 22)"
+   document.getElementById("invalidonp2").style.display = 'inline'
+}
+function alertal2(){
+   document.getElementById("l2").style.borderColor = "rgb(179, 45, 22)"
+   document.getElementById("invalidol2").style.display = 'inline'
+}
 
 function subcadena(w1,w2) {
    const n_w2 = "["+"^"+w2+"]"
@@ -177,7 +190,6 @@ function subcadena(w1,w2) {
    }
    base_w2 = arr.join('')
    const n_base = new RegExp(base_w2,"g")
-   console.log(n_base)
    
    if (base.test(w1) || !(n_base.test(w2))) {
       document.getElementById('light').innerHTML = ''
@@ -210,21 +222,192 @@ function subcadena(w1,w2) {
 }
 
 function positivo() {
-      document.getElementById("np").style.borderColor = ""
-      document.getElementById("invalidonp").style.display = 'none'
-      document.getElementById("l").style.borderColor = ""
-      document.getElementById("invalidol").style.display = 'none'
+   validar()
+   document.getElementById("np1").style.borderColor = ""
+   document.getElementById("invalidonp1").style.display = 'none'
+   document.getElementById("l1").style.borderColor = ""
+   document.getElementById("invalidol1").style.display = 'none'
 
-   const np = document.getElementById("np").value
-   const l = document.getElementById("l").value
+   document.getElementById("np2").style.borderColor = ""
+   document.getElementById("invalidonp2").style.display = 'none'
+   document.getElementById("l2").style.borderColor = ""
+   document.getElementById("invalidol2").style.display = 'none'
+
+   const np = document.getElementById("np1").value
+   const l = document.getElementById("l1").value
+
+   const np2 = document.getElementById("np2").value
+   const l2 = document.getElementById("l2").value
+
+   let cons_np = false
+   let cons_l = false
+   let cons_np2 = false
+   let cons_l2 = false
+
    if (/[^\d]/g.test(np) || np == "") {
       alertanp()
-   }else if(/[^\d]/g.test(l) || l == ""){
-      alertal()
+      cons_np = false
    }else{
-      document.getElementById("np").style.borderColor = ""
-      document.getElementById("invalidonp").style.display = 'none'
-      document.getElementById("l").style.borderColor = ""
-      document.getElementById("invalidol").style.display = 'none'
+      document.getElementById("np1").style.borderColor = ""
+      document.getElementById("invalidonp1").style.display = 'none'
+      cons_np = true
    }
+
+
+   if(/[^\d]/g.test(l) || l == ""){
+      alertal()
+      cons_l = false
+   }else{
+      document.getElementById("l1").style.borderColor = ""
+      document.getElementById("invalidol1").style.display = 'none'
+      cons_l = true
+   }
+
+   if (/[^\d]/g.test(np2) || np2 == "") {
+      alertanp2()
+      cons_np2 = false
+   }else{
+      document.getElementById("np2").style.borderColor = ""
+      document.getElementById("invalidonp2").style.display = 'none'
+      cons_np2 = true
+   }
+
+   if(/[^\d]/g.test(l2) || l2 == ""){
+      alertal2()
+      cons_l2 = false
+   }else{
+      document.getElementById("l2").style.borderColor = ""
+      document.getElementById("invalidol2").style.display = 'none'
+      cons_l2 = true
+   }
+   if (validar() && cons_np && cons_l && cons_np2 && cons_l2) {
+      lenguaje(l,np,l2,np2)
+   }
+
+}
+
+
+
+
+function lenguaje(l,np,l2,np2){
+   let mx = 0
+   const max_r = (alfabeto.length)**l
+   const max_r2 = (alfabeto.length)**l2
+   console.log(max_r+" "+max_r2)
+   if (max_r > max_r2) {
+      mx = max_r
+   }else{
+      mx = max_r2
+   }
+
+   if(np > mx || np2 > mx){
+      console.log("solicita mas cadenas de las posibles (palabras posibles:"+ max_r+" )")
+   }else{
+      generar(l,np,l2,np2)
+   }
+    
+
+
+
+}
+
+function rand(max) {
+   return Math.floor(Math.random() * (max));
+}
+
+
+function generar(l,np,l2,np2){
+   
+   let str = ""
+   let leng = []
+   let leng2 = []
+   for (let i = leng.length; i < np; i++) {
+      for (let j = 0; j < l; j++) {
+         str += alfabeto[rand(alfabeto.length)]
+      }
+      leng.push(str)
+      const norep = [...new Set(leng)];
+      leng = norep
+      i = leng.length-1
+      str =""
+
+   }
+   console.log(leng)
+
+   for (let i = leng2.length; i < np2; i++) {
+      for (let j = 0; j < l2; j++) {
+         str += alfabeto[rand(alfabeto.length)]
+      }
+      leng2.push(str)
+      let norep = [...new Set(leng2)];
+      leng2 = norep
+      i = leng2.length-1
+      str =""
+
+   }
+   console.log(leng2)
+   document.getElementById('led').innerHTML = ""
+
+   document.getElementById('len1').innerHTML = ""
+   document.getElementById('len1').innerHTML = "L<sub>1</sub>: "+ leng.join(", ")
+   document.getElementById('len2').innerHTML = ""
+   document.getElementById('len2').innerHTML = "L<sub>2</sub>: "+ leng2.join(", ")
+   document.getElementById("danger").disabled = false;
+   L1 = leng
+   L2 = leng2
+}
+function restar(){
+   let LD = L1.filter(val => !L2.includes(val))
+   document.getElementById('led').innerHTML = ""
+   document.getElementById('led').innerHTML = "L<sub>D</sub>: "+ LD.join(", ")
+}
+
+function pot(){
+   let res = alfabeto
+   let nw = res
+   if(validar()){
+      let exp = document.getElementById("range").value
+      if (exp == 0) {
+         document.getElementById('exp').innerHTML = ""
+         document.getElementById('exp').innerHTML = "Σ<sub>1</sub><sup>"+exp+"</sup> = λ"
+      }
+      if (exp > 0) {
+         for (let i = 1; i < exp; i++) {
+            nw = []
+            for (let j = 0; j < alfabeto.length; j++) {
+               for (let k = 0; k < res.length ; k++) {
+                  let a = alfabeto[j]+res[k]
+                  nw.push(a)
+               }
+            }
+            res = nw
+         }
+         console.log(nw)
+         document.getElementById('exp').innerHTML = ""
+         document.getElementById('exp').innerHTML = "Σ<sub>1</sub><sup>"+exp+"</sup> = "+ nw.join(", ")
+      }
+      if (exp < 0) {
+         for (let i = -1; i > exp; i--) {
+            nw = []
+            for (let j = 0; j < alfabeto.length; j++) {
+               for (let k = 0; k < res.length ; k++) {
+                  let a = inv(alfabeto[j])+inv(res[k])
+                  nw.push(a)
+               }
+            }
+            res = nw
+         }
+         document.getElementById('exp').innerHTML = ""
+         document.getElementById('exp').innerHTML = "Σ<sub>1</sub><sup>"+exp+"</sup> = "+ nw.join(", ")
+      }
+
+   }else{
+
+   }
+   
+
+}
+
+function inv(str){
+      return str.split("").reverse().join("");
 }
