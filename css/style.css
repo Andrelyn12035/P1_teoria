@@ -38,6 +38,22 @@
    color:rgb(179, 45, 22);
 }
 
+#invalidostr1{
+   display: none;
+   font-size: 13px;
+   color:rgb(179, 45, 22);
+}
+#invalidostr2{
+   display: none;
+   font-size: 13px;
+   color:rgb(179, 45, 22);
+}
+
+#validostr{
+   display: none;
+   font-size: 13px;
+   color:rgb(22, 179, 43);
+}
 #len1{
    color: rgb(95, 95, 95);
 }

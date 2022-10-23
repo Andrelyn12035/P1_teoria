@@ -172,6 +172,24 @@ function alertal2(){
    document.getElementById("l2").style.borderColor = "rgb(179, 45, 22)"
    document.getElementById("invalidol2").style.display = 'inline'
 }
+function alertastr1(){
+   document.getElementById("string").style.borderColor = "rgb(179, 45, 22)"
+   document.getElementById("invalidostr1").style.display = 'inline'
+   document.getElementById("invalidostr2").style.display = 'none'
+   document.getElementById("validostr").style.display = 'none'
+}
+function alertastr2(){
+   document.getElementById("string").style.borderColor = "rgb(179, 45, 22)"
+   document.getElementById("invalidostr2").style.display = 'inline'
+   document.getElementById("invalidostr1").style.display = 'none'
+   document.getElementById("validostr").style.display = 'none'
+}
+function alertastr3(){
+   document.getElementById("string").style.borderColor = "rgb(22, 179, 43)"
+   document.getElementById("validostr").style.display = 'inline'
+   document.getElementById("invalidostr1").style.display = 'none'
+   document.getElementById("invalidostr2").style.display = 'none'
+}
 
 function subcadena(w1,w2) {
    const n_w2 = "["+"^"+w2+"]"
@@ -410,4 +428,16 @@ function pot(){
 
 function inv(str){
       return str.split("").reverse().join("");
+}
+
+function regex() {
+   let string = document.getElementById("string").value
+   //valida letras minusculas
+   if (/[^a-zñ]/g.test(string) || string == "") {
+      alertastr1()
+   }else if(string.replace(/(ñ*[^eiou\W]*ñ*a+ñ*[^eiou\W]*ñ*)(ñ*[^aiou\W]*ñ*e+ñ*[^aiou\W]*ñ*)(ñ*[^aeou\W]*ñ*i+ñ*[^aeou\W]*ñ*)(ñ*[^aeiu\W]*ñ*o+ñ*[^aeiu\W]*ñ*)(ñ*[^aeio\W]*ñ*u+ñ*[^aeio\W]*ñ*)/g, "") != ""){
+      alertastr2()
+   }else{
+      alertastr3()
+   }
 }

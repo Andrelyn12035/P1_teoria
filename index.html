@@ -92,6 +92,26 @@
             
           </div>
         </div>
+
+        <div class="card d-flex mb-4 w-50">
+          <h5 class="card-header">Utilización de expresiones regulares</h5>
+          <div class="card-body mw-50">
+            <p class="card-text"><b>A)</b> Todas las cadenas de letras en minúsculas (a-z) que contengan las cinco vocales en orden. Las vocales pueden estar repetidas 
+              (siempre que mantengan el orden), las secuencias de las vocales 
+              también pueden repetirse. La secuencia completa de vocales 
+              también puede repetirse.</p>
+            <input type="text" class="form-control" id="string" oninput="regex()" placeholder="Cadena:">
+            <div id="invalidostr1">
+              Ingresar valores en el rango a-z
+            </div>
+            <div id="invalidostr2">
+              La cadena no cumple con los requisitos
+            </div>
+            <div id="validostr">
+              La cadena SI cumple con los requisitos
+            </div>
+          </div>
+        </div>
       </div>
 
 
