@@ -206,7 +206,7 @@ function subcadena(w1,w2) {
          arr.push(w)
       }
    }
-   base_w2 = arr.join('')
+   let base_w2 = arr.join('')
    const n_base = new RegExp(base_w2,"g")
    
    if (base.test(w1) || !(n_base.test(w2))) {
@@ -217,6 +217,8 @@ function subcadena(w1,w2) {
       document.getElementById('light').innerHTML = ''
       document.getElementById('light').innerHTML = '-La cadena W1 es una subsecuencia de W2'
    }else{
+            document.getElementById('light').innerHTML = ''
+            document.getElementById('light').innerHTML = '-La cadena W1 es una subcadena (subsecuencia consecutiva) de W2'
       if (prefijo.test(w2)) {
          if (w1 == w2) {
             document.getElementById('light').innerHTML = ''
